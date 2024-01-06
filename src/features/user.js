@@ -36,7 +36,7 @@ export const register = createAsyncThunk(
 
 export const getUser = createAsyncThunk('users/me', async (_, thunkApi) => {
     const accessToken = localStorage.getItem('access_token');
-    // console.log(accessToken)
+    console.log("getUser",accessToken)
     try {
         const res = await fetch(`${BASE_URL}/api/users/me/`, {
             method: 'GET',
@@ -80,6 +80,7 @@ export const login = createAsyncThunk(
             if (res.status === 200) {
                 localStorage.setItem('access_token', data.access);
                 localStorage.setItem('refresh_token', data.refresh);
+                console("LOGIN", data)
                 const { dispatch } = thunkApi;
                 dispatch(getUser());
                 return data;
