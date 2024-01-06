@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.karla {
+    font-family: 'Karla', sans-serif;
+}
+
+.dancing {
+    font-family: 'Dancing Script', cursive;
+}
+
+.lobster {
+    font-family: 'Lobster', cursive;
+}
+
+.nunito {
+    font-family: 'Nunito', sans-serif;
+}
+
+.rajdhani {
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.tektur {
+    font-family: 'Tektur', cursive;
+}
+
+.raleway {
+    font-family: 'Raleway', sans-serif;
+}
+
+.public {
+    font-family: 'Public Sans', sans-serif;
+}
+
+.tooltip {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 55vw;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
