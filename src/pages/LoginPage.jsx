@@ -34,11 +34,13 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       setErrors({});
+      console.log("++","email : ",email, ", password : ", password )
       const response = await dispatch(login({ email, password }));  
       if (response.payload && response.payload.detail) {
         setErrors(response.payload);
         console.log('Login failed:', response.payload);
       } else {
+        console.log(response.payload);
         console.log('Login successful. Navigating to home.');
         navigate('/home');
       }

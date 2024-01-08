@@ -72,7 +72,8 @@ const  Navbar = () => {
       const websocketProtocol =
         window.location.protocol === "https:" ? "wss://" : "ws://";
       // const wsURL = `${websocketProtocol}${window.location.host}/ws/notification/?token=${accessToken}`;
-      const wsURL = `ws://localhost:8000/ws/notification/?token=${accessToken}`
+      const wsURL = `${websocketProtocol}arunkrishna.online/ws/notification/?token=${accessToken}`;
+      // const wsURL = `ws://localhost:8000/ws/notification/?token=${accessToken}`
       const socket = new WebSocket(wsURL);
       console.log(wsURL);
 

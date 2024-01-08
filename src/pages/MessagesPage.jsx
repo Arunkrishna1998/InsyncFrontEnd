@@ -83,7 +83,9 @@ const MessagesPage = () => {
       const accessToken = localStorage.getItem("access_token");
       const websocketProtocol = window.location.protocol === "https:" ? "wss://" : "ws://";
       // const wsUrl = `${websocketProtocol}${window.location.host}/ws/chat/${data.id}/?token=${accessToken}`;
-      const wsUrl = `ws://localhost:8000/ws/chat/${data.id}/?token=${accessToken}`
+      const wsUrl = `${websocketProtocol}arunkrishna.online/ws/chat/${data.id}/?token=${accessToken}`;
+
+      // const wsUrl = `ws://localhost:8000/ws/chat/${data.id}/?token=${accessToken}`
       const newChatWs = new WebSocket(wsUrl);
       setBg(true);
 

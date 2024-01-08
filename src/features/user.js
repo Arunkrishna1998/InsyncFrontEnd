@@ -78,9 +78,9 @@ export const login = createAsyncThunk(
 
             const data = await res.json();
             if (res.status === 200) {
+                console.log("Logging In User ")
                 localStorage.setItem('access_token', data.access);
                 localStorage.setItem('refresh_token', data.refresh);
-                console("LOGIN", data)
                 const { dispatch } = thunkApi;
                 dispatch(getUser());
                 return data;
@@ -114,6 +114,7 @@ export const googleLogin = createAsyncThunk(
 
             const data = await res.json();
             if (res.status === 200) {
+                
                 localStorage.setItem('access_token', data.access);
                 localStorage.setItem('refresh_token', data.refresh);
                 const { dispatch } = thunkApi;
