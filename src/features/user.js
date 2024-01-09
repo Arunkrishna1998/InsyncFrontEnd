@@ -34,9 +34,10 @@ export const register = createAsyncThunk(
     }
 )
 
+
 export const getUser = createAsyncThunk('users/me', async (_, thunkApi) => {
     const accessToken = localStorage.getItem('access_token');
-    console.log("getUser",accessToken)
+    console.log("getUser++++",accessToken)
     try {
         const res = await fetch(`${BASE_URL}/api/users/me/`, {
             method: 'GET',
@@ -55,6 +56,7 @@ export const getUser = createAsyncThunk('users/me', async (_, thunkApi) => {
             return thunkApi.rejectWithValue(data);
         }
     } catch(err) {
+        console.log(" ****************** ", err)
         return thunkApi.rejectWithValue(err)
     }
 })
