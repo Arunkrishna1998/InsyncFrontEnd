@@ -3,12 +3,14 @@ import { Link, useParams } from "react-router-dom";
 
 import NotFoundPage from "./NotFoundPage";
 import resetPasswordApi from "../api/resetPasswordApi";
+import { useNavigate } from "react-router-dom";
 
 const PasswordReset = () => {
   const [errors, setErrors] = useState({});
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const { uid, token } = useParams();
+  const navigate = useNavigate();
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -22,23 +24,25 @@ const PasswordReset = () => {
     }
     try {
         await resetPasswordApi(uid, token, password, confirmPassword)
+        navigate("/");
       } catch (error) {
         console.error(error);
       }
   };
 
   return (
-    <div className="container mx-auto bg-[#f9efeb]">
+    <div className="container mx-auto bg-[#ffffff]">
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <Link to={"/"}>
-            <img
+            {/* <img
               className="mx-auto h-10 rounded-full w-auto"
-              src="NextNode.png"
+              src="#"
               alt="Your Company"
-            />
+            /> */}
+            <h1>Insync</h1>
           </Link>
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-[#4d2c4d]">
+          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-[#000000]">
             Reset Password
           </h2>
         </div>
@@ -97,7 +101,7 @@ const PasswordReset = () => {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm bg-[#4d2c4d] hover:bg-[#92638f] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4d2c4d]"
+                className="flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm bg-[#000000] hover:bg-[#63927b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4d2c4d]"
               >
                 Change
               </button>

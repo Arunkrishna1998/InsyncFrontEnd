@@ -33,7 +33,6 @@ const MyNetworksPage = () => {
 
   const navigate = useNavigate();
 
-  console.log("+++++++Followers++++++", followers)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,6 +52,7 @@ const MyNetworksPage = () => {
       fetchData();
     } 
   }, [user, setFollows, setProfiles]);
+
 
   const fetchData = async () => {
     try {
@@ -174,13 +174,13 @@ const MyNetworksPage = () => {
           onClick={() => setCurrentPageProfiles(currentPageProfiles - 1)}
           disabled={currentPageProfiles === 1}
         >
-          {/* Previous&nbsp; */}
+          Previous&nbsp;
         </button>
         <button
           onClick={() => setCurrentPageProfiles(currentPageProfiles + 1)}
           disabled={profilesEndIndex >= profiles.length}
         >
-          {/* Next */}
+          Next
         </button>
       </div>
 
@@ -221,13 +221,13 @@ const MyNetworksPage = () => {
           onClick={() => setCurrentPageFollowers(currentPageFollowers - 1)}
           disabled={currentPageFollowers === 1}
         >
-          {/* Previous&nbsp; */}
+          Previous&nbsp;
         </button>
         <button
           onClick={() => setCurrentPageFollowers(currentPageFollowers + 1)}
           disabled={profilesEndIndex >= profiles.length}
         >
-          {/* Next */}
+          Next
         </button>
       </div>
 

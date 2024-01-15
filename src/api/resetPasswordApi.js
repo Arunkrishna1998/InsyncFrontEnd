@@ -16,6 +16,7 @@ const resetPasswordApi = async (uid, token, password, confirmPassword) => {
 
     if (response.status === 200) {
       console.log('Email sent');
+      alert("Password Reset Successfull");
       return response.data; // Resolve the promise with response data
     } else {
       console.log('Request failed with status code:', response.status);

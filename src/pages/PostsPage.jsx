@@ -55,6 +55,12 @@ const PostsPage = () => {
     }
   }, [user, search, setShowModal, setComments]);
 
+  console.log("+++++++++POSTS++++++++");
+  console.log(posts);
+  console.log("+++++++++POSTS++++++++");
+
+
+
   useEffect(() => {
     if (user?.set_interest === false) {
       setShowInterestsModal(true);

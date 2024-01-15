@@ -1,30 +1,5 @@
-// import axios from 'axios';
-// import {BASE_URL} from '../config';
-
-// const postapi = async () => {
-//   try {
-//     const accessToken = localStorage.getItem('access_token');
-//     const response = await axios.get(`${BASE_URL}/api/post/`, {
-//       headers: {
-//         Accept: 'application/json',
-//         'Content-Type': 'application/json',
-//         Authorization: `Bearer ${accessToken}`,
-//       },
-//     });
-//     if  (response.status === 200) {
-//         return response.data;
-//     } else {
-//         console.log(response.error)
-//     }
-//     console.log(response.data);
-//   } catch (error) {
-//     console.error("Error Fetching Posts");
-//   }
-// };
-
-// export default postapi;
 import axios from 'axios';
-import { BASE_URL } from '../config';
+import {BASE_URL} from '../config';
 
 const postapi = async () => {
   try {
@@ -36,16 +11,14 @@ const postapi = async () => {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-
-    if (response.ok) {
-      return response.data;
+    if  (response.status === 200) {
+        return response.data;
     } else {
-      console.error('Request failed with status:', response.status);
-      return null; // or throw an error
+        console.log(response.error)
     }
+    console.log(response.data);
   } catch (error) {
-    console.error('Request failed:', error.message || error.response.data);
-    return null; // or throw an error
+    console.error("Error Fetching Posts");
   }
 };
 

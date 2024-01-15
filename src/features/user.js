@@ -35,31 +35,70 @@ export const register = createAsyncThunk(
 )
 
 
+// export const getUser = createAsyncThunk('users/me', async (_, thunkApi) => {
+//     const accessToken = localStorage.getItem('access_token');
+//     console.log("getUser++++",accessToken)
+//     try {
+//         const res = await fetch(`${BASE_URL}/api/users/me/`, {
+//             method: 'GET',
+//             headers: {
+//                 Accept: 'application/json',
+//                 Authorization: `Bearer ${accessToken}`,
+//             },
+//         })
+//         const data = await res.json();
+//         if  (res.status === 200) {
+//             console.log("GET USER");
+//             console.log(data)
+//             console.log("END GET USER");
+//             return data;
+//         } else {
+//             return thunkApi.rejectWithValue(data);
+//         }
+//     } catch(err) {
+//         return thunkApi.rejectWithValue(err)
+//     }
+// })
+
+
+
 export const getUser = createAsyncThunk('users/me', async (_, thunkApi) => {
-    const accessToken = localStorage.getItem('access_token');
-    console.log("getUser++++",accessToken)
     try {
+        const accessToken = localStorage.getItem('access_token');
+        console.log("getUser++++", accessToken);
+        const auth_token =  `Bearer ${accessToken}`
+        console.log("Auth Token : ",auth_token)
+        
+        if (!accessToken) {
+            throw new Error("Access token not found");
+        }
+
         const res = await fetch(`${BASE_URL}/api/users/me/`, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
-                Authorization: `Bearer ${accessToken}`,
+                Authorization: auth_token,
             },
-        })
-        const data = await res.json();
-        if  (res.status === 200) {
-            console.log("GET USER");
-            console.log(data)
-            console.log("END GET USER");
-            return data;
-        } else {
-            return thunkApi.rejectWithValue(data);
+        });
+
+        if (!res.ok) {
+            const errorData = await res.json();
+            throw new Error(errorData.message || 'Failed to fetch user');
         }
-    } catch(err) {
-        console.log(" ****************** ", err)
-        return thunkApi.rejectWithValue(err)
+
+        const data = await res.json();
+        console.log("GET USER");
+        console.log(data);
+        console.log("END GET USER");
+        
+        return data;
+    } catch (err) {
+        return thunkApi.rejectWithValue(err.message || 'Failed to fetch user');
     }
-})
+});
+
+
+
 
 export const login = createAsyncThunk(
     'users/login/',
