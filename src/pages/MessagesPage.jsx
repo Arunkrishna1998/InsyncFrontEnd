@@ -35,14 +35,6 @@ const MessagesPage = () => {
     }
   }, [user]);
 
-  // useEffect(() => {
-  //   if (ws) {
-  //     ws.onmessage = (event) => {
-  //       const message = JSON.parse(event.data);
-  //       setMessages((prevMessages) => [...prevMessages, message]);
-  //     };
-  //   }
-  // }, [ws]);
 
 
   const checkAccessToken = () =>{
@@ -84,26 +76,19 @@ const MessagesPage = () => {
       const accessToken = localStorage.getItem("access_token");
       const websocketProtocol = window.location.protocol === "https:" ? "wss://" : "ws://";
       // const wsUrl = `${websocketProtocol}${window.location.host}/ws/chat/${data.id}/?token=${accessToken}`;
-
-      // const wsUrl = `${websocketProtocol}arunkrishna.online/ws/chat/${data.id}/?token=${accessToken}`;
-
-      const wsUrl = `wss://arunkrishna.online/ws/chat/${data.id}/?token=${accessToken}`;
-  
-
-      // const wsUrl = `ws://localhost:8000/ws/chat/${data.id}/?token=${accessToken}`
+      const wsUrl = `wss://insyncbackend.arunkrishna.online/ws/chat/${data.id}/?token=${accessToken}`;
+      
       const newChatWs = new WebSocket(wsUrl);
       setBg(true);
 
       newChatWs.onopen = async () => {
         console.log("Chatroom WebSocket connection opened.");
-        // Fetch previous messages when the WebSocket connection is opened
         const previousMessages = await getChatMessages(data.id);
         setMessages(previousMessages);
         await messageSeenApi(userId);
         setProfiles((prevProfiles) => {
           return prevProfiles.map((profile) => {
             if (profile.id === data.id) {
-              // Set unseen_message_count to zero
               return { ...profile, unseen_message_count: 0 };
             }
             return profile;

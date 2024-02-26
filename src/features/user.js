@@ -35,32 +35,6 @@ export const register = createAsyncThunk(
 )
 
 
-// export const getUser = createAsyncThunk('users/me', async (_, thunkApi) => {
-//     const accessToken = localStorage.getItem('access_token');
-//     console.log("getUser++++",accessToken)
-//     try {
-//         const res = await fetch(`${BASE_URL}/api/users/me/`, {
-//             method: 'GET',
-//             headers: {
-//                 Accept: 'application/json',
-//                 Authorization: `Bearer ${accessToken}`,
-//             },
-//         })
-//         const data = await res.json();
-//         if  (res.status === 200) {
-//             console.log("GET USER");
-//             console.log(data)
-//             console.log("END GET USER");
-//             return data;
-//         } else {
-//             return thunkApi.rejectWithValue(data);
-//         }
-//     } catch(err) {
-//         return thunkApi.rejectWithValue(err)
-//     }
-// })
-
-
 
 export const getUser = createAsyncThunk('users/me', async (_, thunkApi) => {
     try {
@@ -135,40 +109,6 @@ export const login = createAsyncThunk(
 );
 
 
-
-export const googleLogin = createAsyncThunk(
-    'users/login/',
-    async ({ email, password }, thunkApi) => {
-        const body = JSON.stringify({
-            email,
-            password
-        })
-        try {
-            const res = await fetch(`${BASE_URL}/api/token/`, {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body,
-            })
-
-            const data = await res.json();
-            if (res.status === 200) {
-                
-                localStorage.setItem('access_token', data.access);
-                localStorage.setItem('refresh_token', data.refresh);
-                const { dispatch } = thunkApi;
-                dispatch(getUser());
-                return data;
-            } else {
-                return thunkApi.rejectWithValue(data);
-            }
-        } catch(err) {
-            return thunkApi.rejectWithValue(err.response.data);
-        };
-    }
-);
 
 
 

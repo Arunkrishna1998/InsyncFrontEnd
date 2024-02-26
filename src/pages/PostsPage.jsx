@@ -55,10 +55,8 @@ const PostsPage = () => {
     }
   }, [user, search, setShowModal, setComments]);
 
-  console.log("+++++++++POSTS++++++++");
-  console.log(posts);
-  console.log("+++++++++POSTS++++++++");
 
+  console.log("POST   :  ", posts)
 
 
   useEffect(() => {
@@ -315,6 +313,7 @@ const PostsPage = () => {
                     {post.tags.map((tag, index) => (
                       <span key={index} className="tag text-sm font-medium">
                         #{tag}&nbsp;
+                        
                       </span>
                     ))}
                   </div>
