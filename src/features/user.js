@@ -39,10 +39,7 @@ export const register = createAsyncThunk(
 export const getUser = createAsyncThunk('users/me', async (_, thunkApi) => {
     try {
         const accessToken = localStorage.getItem('access_token');
-        console.log("getUser++++", accessToken);
-        const auth_token =  `Bearer ${accessToken}`
-        console.log("Auth Token : ",auth_token)
-        
+        const auth_token =  `Bearer ${accessToken}`        
         if (!accessToken) {
             throw new Error("Access token not found");
         }
@@ -61,9 +58,6 @@ export const getUser = createAsyncThunk('users/me', async (_, thunkApi) => {
         }
 
         const data = await res.json();
-        console.log("GET USER");
-        console.log(data);
-        console.log("END GET USER");
         
         return data;
     } catch (err) {

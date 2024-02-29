@@ -75,7 +75,7 @@ const  Navbar = () => {
       const wsURL = `wss://insyncbackend.arunkrishna.online/ws/notification/?token=${accessToken}`;
       
       const socket = new WebSocket(wsURL);
-      console.log(wsURL);
+      // console.log(wsURL);
 
       socket.onopen = () => {
         console.log("WebSocket connection established");
