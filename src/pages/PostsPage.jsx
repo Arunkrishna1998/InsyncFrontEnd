@@ -24,7 +24,6 @@ import { BASE_URL } from "../config";
 
 const PostsPage = () => {
   const { loading, user, isAuthenticated } = useSelector((state) => state.user);
-  console.log("Home ",loading, user, isAuthenticated); 
   const [posts, setPosts] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showPostModal, setShowPostModal] = useState(false);
@@ -54,9 +53,6 @@ const PostsPage = () => {
       fetchData();
     }
   }, [user, search, setShowModal, setComments]);
-
-
-  console.log("POST   :  ", posts)
 
 
   useEffect(() => {
@@ -180,18 +176,7 @@ const PostsPage = () => {
     }
   };
 
-  // const handleToggleFollow = async (userId) => {
-  //   try {
-  //     await followUserApi(userId);
-  //     toast.success("User follow toggled successfully!", {
-  //       position: "top-center",
-  //     });
-  //   } catch (error) {
-  //     toast.error("Failure, User not Followed!", {
-  //       position: "top-center",
-  //     });
-  //   }
-  // };
+
 
   const profileView = (email) => {
     navigate(`/profile/${email}`);
@@ -225,14 +210,7 @@ const PostsPage = () => {
               >
                 <div className="flex justify-between items-center">
                   <div className="flex items-center">
-                  {/* <Link to={`/profile/${user.email}`}> */}
-                    {/* <img
-                      src={`${BASE_URL}${post.author.profile_image}`}
-                      alt="Profile"
-                      className="mb-4 h-auto rounded-full align-middle"
-                      style={{ maxWidth: "50px" }}
-                    /> */}
-                  {/* </Link> */}
+
                     <h5
                       onClick={() => profileView(post.author.email)}
                       className="mb-2 ms-2 mt-2 text-xl font-bold cursor-pointer leading-tight text-[#000000]"
@@ -245,16 +223,7 @@ const PostsPage = () => {
                         (follower) => follower.follower === user.email
                       ) ? (
                         <>
-                          {/* <button
-                          type="button"
-                          className="inline-block ml-2 rounded-full bg-transparent justify-start px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal]"
-                          data-te-ripple-init
-                          data-te-ripple-color="light"
-                          title='Unfollow'
-                          onClick={() => handleToggleFollow(post.author.id)}
-                        >
-                          <span class="material-symbols-outlined">person_remove</span>
-                        </button> */}
+                          
                           <p
                             title="Following"
                             className="text-xs border-2 rounded-md m-2 p-1"
@@ -264,18 +233,7 @@ const PostsPage = () => {
                           </p>
                         </>
                       ) : (
-                        // <button
-                        //   type="button"
-                        //   className="inline-block ml-2 rounded-full bg-transparent justify-start px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal]"
-                        //   data-te-ripple-init
-                        //   data-te-ripple-color="light"
-                        //   title="Follow"
-                        //   onClick={() => handleToggleFollow(post.author.id)}
-                        // >
-                        //   <span class="material-symbols-outlined">
-                        //     person_add
-                        //   </span>
-                        // </button>
+                        
                         <p
                             title="Following"
                             className="text-xs border-2 rounded-md m-2 p-1"
@@ -354,14 +312,7 @@ const PostsPage = () => {
               </div>
               <div className="mb-2">
                 <div className="text-lg flex ms-6">
-                  {/* <strong
-                    style={{ cursor: "pointer" }}
-                    onClick={() => handleClickComments(post.id, post.comments)}
-                  >
-                    Comments:
-                  </strong> */}
                 </div>
-                {/* <Comments comments={post.comments} /> */}
               </div>
             </div>
           ))
@@ -369,7 +320,6 @@ const PostsPage = () => {
           <p>No posts available.</p>
         )}
       </div>
-      {/* <UnsplashPage /> */}
       <CommentsModal
         key={postId}
         postId={postId}

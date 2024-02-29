@@ -35,7 +35,6 @@ const PostDetailPage = () => {
       try {
         const data = await getPostApi(postId);
         setPost(data);
-        console.log(data.comments);
         setComments(data.comments);
       } catch (error) {
         console.error(error);
